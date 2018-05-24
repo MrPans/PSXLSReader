@@ -8,6 +8,8 @@
 #import "PSXLSReader.h"
 #import "xls.h"
 
+static const NSInteger CELL_ID_BLANK = 0x201;
+
 @interface PSCell()
 @property (nonatomic, assign, readwrite) PSCellContentType type;
 @property (nonatomic, assign, readwrite) NSInteger row;
@@ -20,27 +22,24 @@
 
 @interface PSXLSReader ()
 
+@property (nonatomic, assign) xlsWorkBook *workBook;
+@property (nonatomic, assign) NSInteger numSheets;
+@property (nonatomic, assign) NSInteger activeWorkSheetID;        // keep last one active
+@property (nonatomic, assign) xlsWorkSheet *activeWorkSheet;        // keep last one active
+@property (nonatomic, assign) xlsSummaryInfo *summary;
+@property (nonatomic, assign) BOOL iterating;
+@property (nonatomic, assign) NSInteger lastRowIndex;
+@property (nonatomic, assign) NSInteger lastColIndex;
+@property (nonatomic, assign) NSStringEncoding encoding;
+
 - (void)setWorkBook:(xlsWorkBook *)wb;
 
-- (void)openSheet:(uint32_t)sheetNum;
+- (void)openSheet:(NSInteger)sheetNum;
 - (void)formatContent:(PSCell *)content withCell:(xlsCell *)cell;
 
 @end
 
 @implementation PSXLSReader
-{
-    xlsWorkBook            *_workBook;
-    uint32_t            _numSheets;
-    uint32_t            _activeWorkSheetID;        // keep last one active
-    xlsWorkSheet        *_activeWorkSheet;        // keep last one active
-    xlsSummaryInfo        *_summary;
-    
-    BOOL                _iterating;
-    uint32_t            _lastRowIndex;
-    uint32_t            _lastColIndex;
-    
-    NSStringEncoding    _encoding;
-}
 
 + (PSXLSReader *)readerWithPath:(NSString *)filePath
 {
@@ -56,7 +55,7 @@
     return reader;
 }
 
-- (id)init
+- (instancetype)init
 {
     if((self = [super init])) {
         _activeWorkSheetID = NSNotFound;
@@ -64,6 +63,7 @@
     }
     return self;
 }
+
 - (void)dealloc
 {
     xls_close_summaryInfo(_summary);
@@ -85,17 +85,17 @@
 }
 
 // Sheet Information
-- (uint32_t)numberOfSheets
+- (NSInteger)numberOfSheets
 {
     return _numSheets;
 }
 
-- (NSString *)sheetNameAtIndex:(uint32_t)idx
+- (NSString *)sheetNameAtIndex:(NSInteger)idx
 {
     return idx < _numSheets ? [NSString stringWithCString:(char *)_workBook->sheets.sheet[idx].name encoding:_encoding] : nil;
 }
 
-- (uint16_t)rowsForSheetAtIndex:(uint32_t)idx
+- (NSInteger)rowsForSheetAtIndex:(NSInteger)idx
 {
     [self openSheet:idx];
     NSUInteger numRows = _activeWorkSheet->rows.lastrow + 1;
@@ -107,45 +107,45 @@
     return idx < _numSheets ? (BOOL)_workBook->sheets.sheet[idx].visibility : NO;
 }
 
-- (void)openSheet:(uint32_t)sheetNum
+- (void)openSheet:(NSInteger)sheetNum
 {
     if(sheetNum >= _numSheets) {
         _iterating = true;
         _lastColIndex = UINT32_MAX;
         _lastRowIndex = UINT32_MAX;
-    } else
+    } else {
         if(sheetNum != _activeWorkSheetID) {
             _activeWorkSheetID = sheetNum;
             xls_close_WS(_activeWorkSheet);
-            _activeWorkSheet = xls_getWorkSheet(_workBook, sheetNum);
+            _activeWorkSheet = xls_getWorkSheet(_workBook, (int)sheetNum);
             xls_parseWorkSheet(_activeWorkSheet);
         }
+    }
 }
 
-- (uint16_t)numberOfRowsInSheet:(uint32_t)sheetIndex
+- (NSInteger)numberOfRowsInSheet:(NSInteger)sheetIndex
 {
     [self openSheet:sheetIndex];
     return _activeWorkSheet->rows.lastrow + 1;
 }
 
-- (uint16_t)numberOfColsInSheet:(uint32_t)sheetIndex
+- (NSInteger)numberOfColsInSheet:(NSInteger)sheetIndex
 {
     [self openSheet:sheetIndex];
     return _activeWorkSheet->rows.lastcol + 1;
 }
 
-// Random Access
-- (PSCell *)cellInWorkSheetIndex:(uint32_t)sheetNum row:(uint16_t)row col:(uint16_t)col
+- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row column:(NSInteger)column
 {
     PSCell *content = [PSCell blankCell];
     
-    assert(row && col);
+    assert(row && column);
     
-    [self startIterator:NSNotFound];
+    [self startIteratorSheetAtIndex:NSNotFound];
     [self openSheet:sheetNum];
     
-    --row;
-    --col;
+    row--;
+    column--;
     
     NSUInteger numRows = _activeWorkSheet->rows.lastrow + 1;
     NSUInteger numCols = _activeWorkSheet->rows.lastcol + 1;
@@ -160,9 +160,9 @@
             if(cell->row < row) break;
             if(cell->row > row) return content;
             
-            if(cell->id == 0x201) continue;    // "Blank" filler cell created by libxls
+            if(cell->id == CELL_ID_BLANK) continue;    // "Blank" filler cell created by libxls
             
-            if(cell->col == col) {
+            if(cell->col == column) {
                 [self formatContent:content withCell:cell];
                 return content;
             }
@@ -172,8 +172,9 @@
     return content;
 }
 
-- (PSCell *)cellInWorkSheetIndex:(uint32_t)sheetNum row:(uint16_t)row colStr:(char *)colStr
+- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row columnString:(NSString *)column
 {
+    const char *colStr = [column cStringUsingEncoding:NSUTF8StringEncoding];
     if(strlen(colStr) > 2 || strlen(colStr) == 0) return [PSCell blankCell];
     
     NSInteger col = colStr[0] - 'A';
@@ -187,14 +188,14 @@
     }
     col += 1;
     
-    return [self cellInWorkSheetIndex:sheetNum row:row col:(uint16_t)col];
+    return [self cellInWorkSheetIndex:sheetNum row:row column:col];
 }
 
 // Iterate through all cells
-- (void)startIterator:(uint32_t)sheetNum
+- (void)startIteratorSheetAtIndex:(NSInteger)sheetIndex
 {
-    if(sheetNum != NSNotFound) {
-        [self openSheet:sheetNum];
+    if(sheetIndex != NSNotFound) {
+        [self openSheet:sheetIndex];
         _iterating = true;
         _lastColIndex = 0;
         _lastRowIndex = 0;
@@ -205,28 +206,34 @@
 
 - (PSCell *)nextCell
 {
+    if(!_iterating) {
+        return nil;
+    }
+    
     PSCell *content = [PSCell blankCell];
     
-    if(!_iterating) return nil;
+    NSUInteger rowCount = _activeWorkSheet->rows.lastrow + 1;
+    NSUInteger columnCount = _activeWorkSheet->rows.lastcol + 1;
     
-    NSUInteger numRows = _activeWorkSheet->rows.lastrow + 1;
-    NSUInteger numCols = _activeWorkSheet->rows.lastcol + 1;
+    if(_lastRowIndex >= rowCount) {
+        return content;
+    }
     
-    if(_lastRowIndex >= numRows) return content;
-    
-    for (NSUInteger t=_lastRowIndex; t<numRows; t++)
+    for (NSUInteger t = _lastRowIndex; t < rowCount; t++)
     {
         xlsRow *rowP = &_activeWorkSheet->rows.row[t];
-        for (uint32_t tt=_lastColIndex; tt<numCols; tt++)
+        for (NSInteger column = _lastColIndex; column < columnCount; column++)
         {
-            xlsCell    *cell = &rowP->cells.cell[tt];
+            xlsCell *cell = &rowP->cells.cell[column];
             
-            if(cell->id == 0x201) continue;
-            _lastColIndex = tt + 1;
+            if(cell->id == CELL_ID_BLANK) {
+                continue;
+            }
+            _lastColIndex = column + 1;
             [self formatContent:content withCell:cell];
             return content;
         }
-        ++_lastRowIndex;
+        _lastRowIndex++;
         _lastColIndex = 0;
     }
     // don't make iterator false - user can keep asking for cells, they all just be blank ones though

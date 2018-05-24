@@ -7,6 +7,12 @@
 
 ## Example
 
+## Different with DHXLSReader
+* Swift Compatiable
+* CocoaPods supported
+* Modern Objective-C Api
+* 
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
@@ -27,3 +33,5 @@ DeveloperPans, pansheng@youzan.com
 ## License
 
 PSXLSReader is available under the MIT license. See the LICENSE file for more info.
+
+

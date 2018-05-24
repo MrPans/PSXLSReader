@@ -8,9 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "PSCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PSXLSReader : NSObject
 
-// Summary Information of xls file
+// Summary information of xls file
 @property (nonatomic, readonly) NSString *appName;
 @property (nonatomic, readonly) NSString *author;
 @property (nonatomic, readonly) NSString *category;
@@ -22,8 +24,7 @@
 @property (nonatomic, readonly) NSString *subject;
 @property (nonatomic, readonly) NSString *title;
 
-
-+ (PSXLSReader *)readerWithPath:(NSString *)filePath;
++ (instancetype)readerWithPath:(NSString *)filePath;
 
 - (NSString *)libaryVersion;
 
@@ -36,11 +37,13 @@
 - (NSInteger)numberOfColsInSheet:(NSInteger)sheetIndex;
 
 // Random Access
-- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row col:(NSInteger)col;        // uses 1 based indexing!
-- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row colStr:(char *)col;        // "A"...."Z" "AA"..."ZZ"
+- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row column:(NSInteger)column;        // uses 1 based indexing!
+- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row columnString:(NSString *)column;        // "A"...."Z" "AA"..."ZZ"
 
 // Iterate through all cells
-- (void)startIterator:(NSInteger)sheetNum;
-- (PSCell *)nextCell;
+- (void)startIteratorSheetAtIndex:(NSInteger)sheetIndex;
+- (nullable PSCell *)nextCell;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -43,7 +43,7 @@
     
     text = [text stringByAppendingFormat:@"\n\nNumber of Sheets: %u\n", reader.numberOfSheets];
     NSLog(@"%@", text);
-    [reader startIterator:0];
+    [reader startIteratorSheetAtIndex:0];
     
     while(YES) {
         PSCell *cell = [reader nextCell];
