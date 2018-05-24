@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PSXLSReader_Example' do
+  pod 'PSXLSReader', :path => '../'
+
+  target 'PSXLSReader_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

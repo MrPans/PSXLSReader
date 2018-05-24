@@ -1,0 +1,6 @@
+framework module PSXLSReader {
+  umbrella header "PSXLSReader-umbrella.h"
+
+  export *
+  module * { export * }
+}

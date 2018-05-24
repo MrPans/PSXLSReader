@@ -1,0 +1,16 @@
+PODS:
+  - PSXLSReader (0.1.0)
+
+DEPENDENCIES:
+  - PSXLSReader (from `../`)
+
+EXTERNAL SOURCES:
+  PSXLSReader:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PSXLSReader: 73c6b5d3b769e63932a12d8e2293d5edd77ca80f
+
+PODFILE CHECKSUM: 33015f63d857e50f2d23d26a91dae2d0ddd84f89
+
+COCOAPODS: 1.5.2
