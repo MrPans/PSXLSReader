@@ -59,7 +59,7 @@
 - (id)init
 {
     if((self = [super init])) {
-        _activeWorkSheetID = DHWorkSheetNotFound;
+        _activeWorkSheetID = NSNotFound;
         _encoding = NSUTF8StringEncoding;
     }
     return self;
@@ -141,7 +141,7 @@
     
     assert(row && col);
     
-    [self startIterator:DHWorkSheetNotFound];
+    [self startIterator:NSNotFound];
     [self openSheet:sheetNum];
     
     --row;
@@ -193,7 +193,7 @@
 // Iterate through all cells
 - (void)startIterator:(uint32_t)sheetNum
 {
-    if(sheetNum != DHWorkSheetNotFound) {
+    if(sheetNum != NSNotFound) {
         [self openSheet:sheetNum];
         _iterating = true;
         _lastColIndex = 0;
