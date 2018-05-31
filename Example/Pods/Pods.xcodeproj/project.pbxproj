@@ -8,30 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		009DF7BAB9832D747609DE21E27C4BCD /* ole.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B0FD076DCFC1262DEC198686EC4F6FD /* ole.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		01D2D835BA187E4B9730CED1D81DB278 /* endian.c in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE31961BCC1F868EDF2A29CDAE993 /* endian.c */; };
-		05ECB872E54B2034CAEF0B315523147A /* xls2csv.c in Sources */ = {isa = PBXBuildFile; fileRef = F9E1C95E293712456CE7C7E35527F7F0 /* xls2csv.c */; };
 		15CC333536EE44B46B5B152C16A762C7 /* xlstool.h in Headers */ = {isa = PBXBuildFile; fileRef = E2820B8725EFE1279B3949C69A2D12F3 /* xlstool.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2045C318FABD311BC55E3963F7A74526 /* getopt.c in Sources */ = {isa = PBXBuildFile; fileRef = D84FBBD086E55C14478777C9CE800622 /* getopt.c */; };
 		2198F2714A01F9B7315D8A5DE8FAD94D /* brdb.h in Headers */ = {isa = PBXBuildFile; fileRef = 755ADD29FB114640B0003A73A38FEEF2 /* brdb.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		24D55726E82D07141ECA90D389FF6012 /* PSXLSReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E104CD06F1892D29FFB8DE0DF871516D /* PSXLSReader.m */; };
+		25AACEE6EBAA116825BAAC6EDE5CA742 /* ole.c in Sources */ = {isa = PBXBuildFile; fileRef = 24BAE9859D2050228F6A0BF0A9D2C2D8 /* ole.c */; };
 		2BB986F2536C6FADB32D7234A68A9D0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		346FE93F374FE0F67C9A4B1212ADF2D1 /* xlstool.c in Sources */ = {isa = PBXBuildFile; fileRef = 81D85D5281269AA070DB221C000D250A /* xlstool.c */; };
 		382260EDF767C3D47B4EB425A9C03B2E /* brdb.c.h in Headers */ = {isa = PBXBuildFile; fileRef = 184F6A218FF33F8B646535348A4CF57E /* brdb.c.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		38C4334AE78C11F9DF94C9B6A5215ADA /* xlstypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3166A23823902E141D6887CEF4738E /* xlstypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4853CD1D479ECF30B141E2733DD78A3B /* endian.h in Headers */ = {isa = PBXBuildFile; fileRef = 603B26FD85F71ECB95AF9560AB719F75 /* endian.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		49D7CAE66E221E21FB88805E95FC9285 /* PSXLSReader.h in Headers */ = {isa = PBXBuildFile; fileRef = E1D3E7AE4B5BA4E398A46457D8E93B3A /* PSXLSReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4F158692C6861B0A59A63B226C081E78 /* PSCell.h in Headers */ = {isa = PBXBuildFile; fileRef = FD0A4990D1813FA384277263DDCDE460 /* PSCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49D7CAE66E221E21FB88805E95FC9285 /* PSXLSReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 682B2D3ECEAFD106CC15CB645E72C10C /* PSXLSReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F158692C6861B0A59A63B226C081E78 /* PSXLSCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ADEB4BA176628D9C1681259B69EFC61 /* PSXLSCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56B82EADAE4338D3810AF92805355F89 /* Pods-PSXLSReader_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B55087CA54EEEDA8145327D64F5CB2C /* Pods-PSXLSReader_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		58507C7484306D7147F021E4BF468BB7 /* ole.c in Sources */ = {isa = PBXBuildFile; fileRef = 24BAE9859D2050228F6A0BF0A9D2C2D8 /* ole.c */; };
-		61B5FFC754AAE579EABBA652C4F91BCC /* PSXLSReader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC70BE066FDD0E0C2E859C177067E5 /* PSXLSReader-dummy.m */; };
+		61A8303BD42F33472B598C8A8CFE2F9F /* endian.c in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE31961BCC1F868EDF2A29CDAE993 /* endian.c */; };
+		7E928063BC9881A5080A32421448DFAB /* xls.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C395BD83CE002997E0AC12CB80183 /* xls.c */; };
+		8B277CFD154C4B815939B2DB24F12FC7 /* PSXLSReader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC70BE066FDD0E0C2E859C177067E5 /* PSXLSReader-dummy.m */; };
 		93BA14F1B0A63D84D18AB1EC37146194 /* Pods-PSXLSReader_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EE8DD1E1E45041996CD35D657A575 /* Pods-PSXLSReader_Tests-dummy.m */; };
-		A114CC0BB3281E84EFDF0D986821DDF5 /* xls.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C395BD83CE002997E0AC12CB80183 /* xls.c */; };
 		A539B6BFEE425A68C88531F7AD427242 /* PSXLSReader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 047E8E6C021F0C064E67B26A9892F952 /* PSXLSReader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6D1DE1DCE048DAB75FEE8965EBF6312 /* PSXLSReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FB368F8763279812F95DF4E9B8B51B8C /* PSXLSReader.m */; };
+		A70280810D6640F881901DBADFA14BFA /* xlstool.c in Sources */ = {isa = PBXBuildFile; fileRef = 81D85D5281269AA070DB221C000D250A /* xlstool.c */; };
 		B208660DF962E3698D4AA13DBD372675 /* xls.h in Headers */ = {isa = PBXBuildFile; fileRef = 710AAE447DAD58977FB35B40BC4A5E0D /* xls.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B22A6495531E9E1D76E0DEA4876043AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		B32E973AE69DEC49D500DD33F850E141 /* getopt.c in Sources */ = {isa = PBXBuildFile; fileRef = D84FBBD086E55C14478777C9CE800622 /* getopt.c */; };
+		B80C1103664BCF6B97538964A5092C58 /* xls2csv.c in Sources */ = {isa = PBXBuildFile; fileRef = F9E1C95E293712456CE7C7E35527F7F0 /* xls2csv.c */; };
 		BB94A09384C8AF14DD1A12E1CEAC4021 /* Pods-PSXLSReader_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD469A32CF5161C6325DA2DBB10DAF1 /* Pods-PSXLSReader_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE2C71E0ED2CF21EB4CFC8D081D64356 /* Pods-PSXLSReader_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D49004E9293062767BF350995AF7898B /* Pods-PSXLSReader_Example-dummy.m */; };
-		CF2A71CDCB3EC7B4A469843A1F16C807 /* PSCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = ABF061EB7FEB14E053BDA298A25992E5 /* PSCell.mm */; };
+		D11C60FB3A7F917FDA246A67B7BC1A3D /* PSXLSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05D8A1AB5C3B5E245E8FFD1DBD618F /* PSXLSCell.m */; };
 		F6107AD334E150AEC8C5A07A81728A56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		FA001EAB5ED9163E8278376260A1B9BB /* xlsstruct.h in Headers */ = {isa = PBXBuildFile; fileRef = D1FF6D5DA419CCA373A6A5B754170EEF /* xlsstruct.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FEBC760E53BF52FE148E478818C14421 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 52DAECE1855DAD0AA7A291B2EF386510 /* config.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -58,10 +58,10 @@
 		047E8E6C021F0C064E67B26A9892F952 /* PSXLSReader-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PSXLSReader-umbrella.h"; sourceTree = "<group>"; };
 		0B55087CA54EEEDA8145327D64F5CB2C /* Pods-PSXLSReader_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PSXLSReader_Tests-umbrella.h"; sourceTree = "<group>"; };
 		184F6A218FF33F8B646535348A4CF57E /* brdb.c.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = brdb.c.h; sourceTree = "<group>"; };
-		24BAE9859D2050228F6A0BF0A9D2C2D8 /* ole.c */ = {isa = PBXFileReference; includeInIndex = 1; path = ole.c; sourceTree = "<group>"; };
+		24BAE9859D2050228F6A0BF0A9D2C2D8 /* ole.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = ole.c; sourceTree = "<group>"; };
 		2B0FD076DCFC1262DEC198686EC4F6FD /* ole.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ole.h; sourceTree = "<group>"; };
-		2D1C395BD83CE002997E0AC12CB80183 /* xls.c */ = {isa = PBXFileReference; includeInIndex = 1; path = xls.c; sourceTree = "<group>"; };
-		2E0C4274944EDBC0A19039D8CDC87BEB /* PSXLSReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PSXLSReader.framework; path = PSXLSReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D1C395BD83CE002997E0AC12CB80183 /* xls.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = xls.c; sourceTree = "<group>"; };
+		2E0C4274944EDBC0A19039D8CDC87BEB /* PSXLSReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSXLSReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31665B16AD6E16508071A2F39DC74BFB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D74E9D1AB163F037780202D8B2D60F6 /* Pods-PSXLSReader_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PSXLSReader_Tests-resources.sh"; sourceTree = "<group>"; };
 		3E3166A23823902E141D6887CEF4738E /* xlstypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = xlstypes.h; sourceTree = "<group>"; };
@@ -70,44 +70,44 @@
 		598EE91C3CBC9A96EE1AD11AA1113399 /* Pods-PSXLSReader_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PSXLSReader_Example-resources.sh"; sourceTree = "<group>"; };
 		59F451DEB82E134D147CFBC0C72A111C /* Pods-PSXLSReader_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PSXLSReader_Example-frameworks.sh"; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		5D05D8A1AB5C3B5E245E8FFD1DBD618F /* PSXLSCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PSXLSCell.m; sourceTree = "<group>"; };
 		603B26FD85F71ECB95AF9560AB719F75 /* endian.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = endian.h; sourceTree = "<group>"; };
 		62417D90F10A9DE95DA5E55D5CFB8C14 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		682B2D3ECEAFD106CC15CB645E72C10C /* PSXLSReader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PSXLSReader.h; sourceTree = "<group>"; };
 		6958AABF9391FFF6F4A0F488F71DE29D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6ADEB4BA176628D9C1681259B69EFC61 /* PSXLSCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PSXLSCell.h; sourceTree = "<group>"; };
 		6B4EE8DD1E1E45041996CD35D657A575 /* Pods-PSXLSReader_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PSXLSReader_Tests-dummy.m"; sourceTree = "<group>"; };
 		710AAE447DAD58977FB35B40BC4A5E0D /* xls.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = xls.h; sourceTree = "<group>"; };
 		755ADD29FB114640B0003A73A38FEEF2 /* brdb.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = brdb.h; sourceTree = "<group>"; };
-		7821953418ECE24D81A69698F66DA83B /* Pods_PSXLSReader_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PSXLSReader_Example.framework; path = "Pods-PSXLSReader_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7821953418ECE24D81A69698F66DA83B /* Pods_PSXLSReader_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PSXLSReader_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD469A32CF5161C6325DA2DBB10DAF1 /* Pods-PSXLSReader_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PSXLSReader_Example-umbrella.h"; sourceTree = "<group>"; };
-		81D85D5281269AA070DB221C000D250A /* xlstool.c */ = {isa = PBXFileReference; includeInIndex = 1; path = xlstool.c; sourceTree = "<group>"; };
+		81D85D5281269AA070DB221C000D250A /* xlstool.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = xlstool.c; sourceTree = "<group>"; };
 		85FFA2FC90E5CD30478077FCDA8D7E20 /* Pods-PSXLSReader_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PSXLSReader_Example.modulemap"; sourceTree = "<group>"; };
 		88C8428F38A86D6DE024C7E3097EDA0A /* Pods-PSXLSReader_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PSXLSReader_Example.release.xcconfig"; sourceTree = "<group>"; };
 		90D5D99342668C4D666B57B120E16883 /* Pods-PSXLSReader_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PSXLSReader_Tests.modulemap"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98BD244F02F1A8853F8B73D890D65207 /* Pods-PSXLSReader_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PSXLSReader_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		9A7F9CBBF91B09E21579CB48B0008259 /* Pods_PSXLSReader_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PSXLSReader_Tests.framework; path = "Pods-PSXLSReader_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A7F9CBBF91B09E21579CB48B0008259 /* Pods_PSXLSReader_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PSXLSReader_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ACB00F6D42CB0AA3FDFCF74D6C38823 /* Pods-PSXLSReader_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PSXLSReader_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		9F2B78EB2B3F4330E88920E94C8B33B3 /* PSXLSReader.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = PSXLSReader.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		ABF061EB7FEB14E053BDA298A25992E5 /* PSCell.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = PSCell.mm; sourceTree = "<group>"; };
-		B326B77FBC8D70FCC7722193260E03FB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		9F2B78EB2B3F4330E88920E94C8B33B3 /* PSXLSReader.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = PSXLSReader.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B326B77FBC8D70FCC7722193260E03FB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BF156AB146F7FD5AB5B41ADE79BA588C /* Pods-PSXLSReader_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PSXLSReader_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		CA1D7D56B5446D1EC17D9B343329C8FB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		CA1D7D56B5446D1EC17D9B343329C8FB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CFEC4A6414844355FC22574F3462CB5A /* Pods-PSXLSReader_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PSXLSReader_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		D1FF6D5DA419CCA373A6A5B754170EEF /* xlsstruct.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = xlsstruct.h; sourceTree = "<group>"; };
 		D49004E9293062767BF350995AF7898B /* Pods-PSXLSReader_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PSXLSReader_Example-dummy.m"; sourceTree = "<group>"; };
-		D84FBBD086E55C14478777C9CE800622 /* getopt.c */ = {isa = PBXFileReference; includeInIndex = 1; path = getopt.c; sourceTree = "<group>"; };
+		D84FBBD086E55C14478777C9CE800622 /* getopt.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = getopt.c; sourceTree = "<group>"; };
 		DA1E8FB588A78F3F1179FAF90FB87098 /* PSXLSReader.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PSXLSReader.xcconfig; sourceTree = "<group>"; };
 		DABC70BE066FDD0E0C2E859C177067E5 /* PSXLSReader-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PSXLSReader-dummy.m"; sourceTree = "<group>"; };
 		DFA0F231FDB2CF4C0078B9DDD886E60F /* Pods-PSXLSReader_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PSXLSReader_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E104CD06F1892D29FFB8DE0DF871516D /* PSXLSReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PSXLSReader.m; sourceTree = "<group>"; };
 		E1658B6C720AAF2CF6EDB33AF6051297 /* PSXLSReader-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PSXLSReader-prefix.pch"; sourceTree = "<group>"; };
-		E1D3E7AE4B5BA4E398A46457D8E93B3A /* PSXLSReader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PSXLSReader.h; sourceTree = "<group>"; };
 		E2820B8725EFE1279B3949C69A2D12F3 /* xlstool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = xlstool.h; sourceTree = "<group>"; };
 		E98D51A33F4A16261995CEA0E6074921 /* Pods-PSXLSReader_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PSXLSReader_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		ECE0EC54533B6D36B1A15C0A67940A05 /* Pods-PSXLSReader_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PSXLSReader_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F9E1C95E293712456CE7C7E35527F7F0 /* xls2csv.c */ = {isa = PBXFileReference; includeInIndex = 1; path = xls2csv.c; sourceTree = "<group>"; };
-		FA6DE31961BCC1F868EDF2A29CDAE993 /* endian.c */ = {isa = PBXFileReference; includeInIndex = 1; path = endian.c; sourceTree = "<group>"; };
-		FB368F8763279812F95DF4E9B8B51B8C /* PSXLSReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PSXLSReader.m; sourceTree = "<group>"; };
+		F9E1C95E293712456CE7C7E35527F7F0 /* xls2csv.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = xls2csv.c; sourceTree = "<group>"; };
+		FA6DE31961BCC1F868EDF2A29CDAE993 /* endian.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = endian.c; sourceTree = "<group>"; };
 		FCA25ADA77AAF5FA7F5D57AAC917E6AB /* PSXLSReader.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PSXLSReader.modulemap; sourceTree = "<group>"; };
-		FD0A4990D1813FA384277263DDCDE460 /* PSCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PSCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +198,18 @@
 			path = PSXLSReader/Classes/libxls;
 			sourceTree = "<group>";
 		};
+		4E8AD956B63A7F16C40A83B93C9DD8FC /* PSXLSReader */ = {
+			isa = PBXGroup;
+			children = (
+				6ADEB4BA176628D9C1681259B69EFC61 /* PSXLSCell.h */,
+				5D05D8A1AB5C3B5E245E8FFD1DBD618F /* PSXLSCell.m */,
+				682B2D3ECEAFD106CC15CB645E72C10C /* PSXLSReader.h */,
+				E104CD06F1892D29FFB8DE0DF871516D /* PSXLSReader.m */,
+			);
+			name = PSXLSReader;
+			path = PSXLSReader/Classes/PSXLSReader;
+			sourceTree = "<group>";
+		};
 		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +223,7 @@
 			children = (
 				430AAE18E9E496EAE1A456949E8660B1 /* libxls */,
 				39CD93CF175F981AE32CBA1379160B8D /* Pod */,
-				FDC26D5C3AF36E90353F0EB7A390E326 /* PSXLSReader */,
+				4E8AD956B63A7F16C40A83B93C9DD8FC /* PSXLSReader */,
 				94EF4A11DDE747D863586B9A0CC600F4 /* Support Files */,
 			);
 			name = PSXLSReader;
@@ -287,18 +299,6 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		FDC26D5C3AF36E90353F0EB7A390E326 /* PSXLSReader */ = {
-			isa = PBXGroup;
-			children = (
-				FD0A4990D1813FA384277263DDCDE460 /* PSCell.h */,
-				ABF061EB7FEB14E053BDA298A25992E5 /* PSCell.mm */,
-				E1D3E7AE4B5BA4E398A46457D8E93B3A /* PSXLSReader.h */,
-				FB368F8763279812F95DF4E9B8B51B8C /* PSXLSReader.m */,
-			);
-			name = PSXLSReader;
-			path = PSXLSReader/Classes/PSXLSReader;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -327,7 +327,7 @@
 				FEBC760E53BF52FE148E478818C14421 /* config.h in Headers */,
 				4853CD1D479ECF30B141E2733DD78A3B /* endian.h in Headers */,
 				009DF7BAB9832D747609DE21E27C4BCD /* ole.h in Headers */,
-				4F158692C6861B0A59A63B226C081E78 /* PSCell.h in Headers */,
+				4F158692C6861B0A59A63B226C081E78 /* PSXLSCell.h in Headers */,
 				A539B6BFEE425A68C88531F7AD427242 /* PSXLSReader-umbrella.h in Headers */,
 				49D7CAE66E221E21FB88805E95FC9285 /* PSXLSReader.h in Headers */,
 				B208660DF962E3698D4AA13DBD372675 /* xls.h in Headers */,
@@ -362,7 +362,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B2F5F0B5AF6B6AF4874D4111B96E772 /* Build configuration list for PBXNativeTarget "PSXLSReader" */;
 			buildPhases = (
-				819BDD329FB34E014E25EC27EFE5B6E7 /* Sources */,
+				686773505BE42D479074883649426A81 /* Sources */,
 				1FDB7548FDD0FBFFD4F69F2E48CBD801 /* Frameworks */,
 				92CBA870F20DEF5861910991B36D0963 /* Headers */,
 			);
@@ -422,6 +422,22 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		686773505BE42D479074883649426A81 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61A8303BD42F33472B598C8A8CFE2F9F /* endian.c in Sources */,
+				2045C318FABD311BC55E3963F7A74526 /* getopt.c in Sources */,
+				25AACEE6EBAA116825BAAC6EDE5CA742 /* ole.c in Sources */,
+				D11C60FB3A7F917FDA246A67B7BC1A3D /* PSXLSCell.m in Sources */,
+				8B277CFD154C4B815939B2DB24F12FC7 /* PSXLSReader-dummy.m in Sources */,
+				24D55726E82D07141ECA90D389FF6012 /* PSXLSReader.m in Sources */,
+				7E928063BC9881A5080A32421448DFAB /* xls.c in Sources */,
+				B80C1103664BCF6B97538964A5092C58 /* xls2csv.c in Sources */,
+				A70280810D6640F881901DBADFA14BFA /* xlstool.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6B40D72D8142BCE55D8EE4432F161D2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -435,22 +451,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2C71E0ED2CF21EB4CFC8D081D64356 /* Pods-PSXLSReader_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		819BDD329FB34E014E25EC27EFE5B6E7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				01D2D835BA187E4B9730CED1D81DB278 /* endian.c in Sources */,
-				B32E973AE69DEC49D500DD33F850E141 /* getopt.c in Sources */,
-				58507C7484306D7147F021E4BF468BB7 /* ole.c in Sources */,
-				CF2A71CDCB3EC7B4A469843A1F16C807 /* PSCell.mm in Sources */,
-				61B5FFC754AAE579EABBA652C4F91BCC /* PSXLSReader-dummy.m in Sources */,
-				A6D1DE1DCE048DAB75FEE8965EBF6312 /* PSXLSReader.m in Sources */,
-				A114CC0BB3281E84EFDF0D986821DDF5 /* xls.c in Sources */,
-				05ECB872E54B2034CAEF0B315523147A /* xls2csv.c in Sources */,
-				346FE93F374FE0F67C9A4B1212ADF2D1 /* xlstool.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

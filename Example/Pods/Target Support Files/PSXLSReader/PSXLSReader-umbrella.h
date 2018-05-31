@@ -10,7 +10,7 @@
 #endif
 #endif
 
-#import "PSCell.h"
+#import "PSXLSCell.h"
 #import "PSXLSReader.h"
 
 FOUNDATION_EXPORT double PSXLSReaderVersionNumber;

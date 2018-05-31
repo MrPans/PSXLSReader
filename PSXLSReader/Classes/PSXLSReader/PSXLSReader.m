@@ -10,13 +10,13 @@
 
 static const NSInteger CELL_ID_BLANK = 0x201;
 
-@interface PSCell()
+@interface PSXLSCell()
 @property (nonatomic, assign, readwrite) PSCellContentType type;
 @property (nonatomic, assign, readwrite) NSInteger row;
-@property (nonatomic, assign, readwrite) NSInteger col;
+@property (nonatomic, assign, readwrite) NSInteger column;
 @property (nonatomic, assign, readwrite) NSString *columnName;            // "A" ... "Z", "AA"..."ZZZ"
-@property (nonatomic, strong, readwrite) NSString *str;        // typeof depends on contentsType
-@property (nonatomic, strong, readwrite) NSNumber *val;        // typeof depends on contentsType
+@property (nonatomic, strong, readwrite) NSString *text;        // typeof depends on contentsType
+@property (nonatomic, strong, readwrite) NSNumber *value;        // typeof depends on contentsType
 @end
 
 
@@ -35,29 +35,32 @@ static const NSInteger CELL_ID_BLANK = 0x201;
 - (void)setWorkBook:(xlsWorkBook *)wb;
 
 - (void)openSheet:(NSInteger)sheetNum;
-- (void)formatContent:(PSCell *)content withCell:(xlsCell *)cell;
+- (void)formatContent:(PSXLSCell *)content withCell:(xlsCell *)cell;
 
 @end
 
 @implementation PSXLSReader
 
-+ (PSXLSReader *)readerWithPath:(NSString *)filePath
+- (instancetype)initWithPath:(NSString *)filePath;
 {
-    PSXLSReader            *reader;
-    xlsWorkBook            *workBook;
-    
-    // NSLog(@"sizeof FORMULA=%zd LABELSST=%zd", sizeof(FORMULA), sizeof(LABELSST) );
-    const char *file = [filePath cStringUsingEncoding:NSUTF8StringEncoding];
-    if((workBook = xls_open(file, "UTF-8"))) {
-        reader = [PSXLSReader new];
-        [reader setWorkBook:workBook];
+    self = [self init];
+    if (self) {
+        const char *file = [filePath cStringUsingEncoding:NSUTF8StringEncoding];
+        _workBook = xls_open(file, "UTF-8");
+        if(_workBook) {
+            xls_parseWorkBook(_workBook);
+            _numSheets = _workBook->sheets.count;
+            _summary = xls_summaryInfo(_workBook);
+        }
     }
-    return reader;
+    return self;
 }
 
 - (instancetype)init
 {
-    if((self = [super init])) {
+    self = [super init];
+    if (self)
+    {
         _activeWorkSheetID = NSNotFound;
         _encoding = NSUTF8StringEncoding;
     }
@@ -71,15 +74,7 @@ static const NSInteger CELL_ID_BLANK = 0x201;
     xls_close_WB(_workBook);
 }
 
-- (void)setWorkBook:(xlsWorkBook *)wb
-{
-    _workBook = wb;
-    xls_parseWorkBook(_workBook);
-    _numSheets = _workBook->sheets.count;
-    _summary = xls_summaryInfo(_workBook);
-}
-
-- (NSString *)libaryVersion
++ (NSString *)libaryVersion
 {
     return [NSString stringWithCString:xls_getVersion() encoding:NSASCIIStringEncoding];
 }
@@ -93,13 +88,6 @@ static const NSInteger CELL_ID_BLANK = 0x201;
 - (NSString *)sheetNameAtIndex:(NSInteger)idx
 {
     return idx < _numSheets ? [NSString stringWithCString:(char *)_workBook->sheets.sheet[idx].name encoding:_encoding] : nil;
-}
-
-- (NSInteger)rowsForSheetAtIndex:(NSInteger)idx
-{
-    [self openSheet:idx];
-    NSUInteger numRows = _activeWorkSheet->rows.lastrow + 1;
-    return idx < _numSheets ? numRows : 0;
 }
 
 - (BOOL)isSheetVisibleAtIndex:(NSUInteger)idx
@@ -135,9 +123,9 @@ static const NSInteger CELL_ID_BLANK = 0x201;
     return _activeWorkSheet->rows.lastcol + 1;
 }
 
-- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row column:(NSInteger)column
+- (PSXLSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row column:(NSInteger)column
 {
-    PSCell *content = [PSCell blankCell];
+    PSXLSCell *content = [PSXLSCell blankCell];
     
     assert(row && column);
     
@@ -150,17 +138,28 @@ static const NSInteger CELL_ID_BLANK = 0x201;
     NSUInteger numRows = _activeWorkSheet->rows.lastrow + 1;
     NSUInteger numCols = _activeWorkSheet->rows.lastcol + 1;
     
-    for (NSUInteger t=0; t<numRows; t++)
+    for (NSUInteger t = 0; t < numRows; t++)
     {
         xlsRow *rowP = &_activeWorkSheet->rows.row[t];
         for (NSUInteger tt=0; tt<numCols; tt++)
         {
             xlsCell    *cell = &rowP->cells.cell[tt];
             // NSLog(@"Looking for %d:%d:%d - testing %d:%d Type: 0x%4.4x  [t=%d tt=%d]", sheetNum, row, col, cell->row, cell->col, cell->id, t, tt);
-            if(cell->row < row) break;
-            if(cell->row > row) return content;
+            if(cell->row < row)
+            {
+                break;
+            }
             
-            if(cell->id == CELL_ID_BLANK) continue;    // "Blank" filler cell created by libxls
+            if(cell->row > row)
+            {
+                return content;
+            }
+            
+            if(cell->id == CELL_ID_BLANK)
+            {
+                // "Blank" filler cell created by libxls
+                continue;
+            }
             
             if(cell->col == column) {
                 [self formatContent:content withCell:cell];
@@ -172,18 +171,30 @@ static const NSInteger CELL_ID_BLANK = 0x201;
     return content;
 }
 
-- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row columnString:(NSString *)column
+- (PSXLSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row columnName:(NSString *)columnName
 {
-    const char *colStr = [column cStringUsingEncoding:NSUTF8StringEncoding];
-    if(strlen(colStr) > 2 || strlen(colStr) == 0) return [PSCell blankCell];
+    const char *colStr = [columnName cStringUsingEncoding:NSUTF8StringEncoding];
+    if(strlen(colStr) > 2 || strlen(colStr) == 0)
+    {
+        return [PSXLSCell blankCell];
+    }
     
     NSInteger col = colStr[0] - 'A';
-    if(col < 0 || col >= 26) return [PSCell blankCell];
+    
+    if(col < 0 || col >= 26)
+    {
+        return [PSXLSCell blankCell];
+    }
+    
     char c = colStr[1];
-    if(c) {
+    if(c)
+    {
         col *= 26;
         NSInteger col2 = c - 'A';
-        if(col2 < 0 || col2 >= 26) return [PSCell blankCell];
+        if(col2 < 0 || col2 >= 26)
+        {
+            return [PSXLSCell blankCell];
+        }
         col += col2;
     }
     col += 1;
@@ -204,13 +215,13 @@ static const NSInteger CELL_ID_BLANK = 0x201;
     }
 }
 
-- (PSCell *)nextCell
+- (PSXLSCell *)nextCell
 {
     if(!_iterating) {
         return nil;
     }
     
-    PSCell *content = [PSCell blankCell];
+    PSXLSCell *content = PSXLSCell.blankCell;
     
     NSUInteger rowCount = _activeWorkSheet->rows.lastrow + 1;
     NSUInteger columnCount = _activeWorkSheet->rows.lastcol + 1;
@@ -240,14 +251,14 @@ static const NSInteger CELL_ID_BLANK = 0x201;
     return content;
 }
 
-- (void)formatContent:(PSCell *)content withCell:(xlsCell *)cell
+- (void)formatContent:(PSXLSCell *)content withCell:(xlsCell *)cell
 {
     NSUInteger col = cell->col;
     
     content.row = cell->row + 1;
     
     {
-        content.col = col + 1;
+        content.column = col + 1;
         char colStr[3];
         if(col < 26) {
             colStr[0] = 'A' + (char)col;
@@ -265,20 +276,20 @@ static const NSInteger CELL_ID_BLANK = 0x201;
             // test for formula, if
             if(cell->l == 0) {
                 content.type = PSCellContentTypeFloat;
-                content.val = [NSNumber numberWithDouble:cell->d];
+                content.value = [NSNumber numberWithDouble:cell->d];
             } else {
                 if(!strcmp((char *)cell->str, "bool")) {
                     BOOL b = (BOOL)cell->d;
                     content.type = PSCellContentTypeBool;
-                    content.val = [NSNumber numberWithBool:b];
-                    content.str = b ? @"YES" : @"NO";
+                    content.value = [NSNumber numberWithBool:b];
+                    content.text = b ? @"YES" : @"NO";
                 } else
                     if(!strcmp((char *)cell->str, "error")) {
                         // FIXME: Why do we convert the double cell->d to NSInteger?
                         NSInteger err = (NSInteger)cell->d;
                         content.type = PSCellContentTypeError;
-                        content.val = [NSNumber numberWithInteger:err];
-                        content.str = [NSString stringWithFormat:@"%ld", (long)err];
+                        content.value = [NSNumber numberWithInteger:err];
+                        content.text = [NSString stringWithFormat:@"%ld", (long)err];
                     } else {
                         content.type = PSCellContentTypeString;
                     }
@@ -287,33 +298,70 @@ static const NSInteger CELL_ID_BLANK = 0x201;
         case 0x00FD:    //LABELSST
         case 0x0204:    //LABEL
             content.type = PSCellContentTypeString;
-            content.val = [NSNumber numberWithLong:cell->l];    // possible numeric conversion done for you
+            content.value = [NSNumber numberWithLong:cell->l];    // possible numeric conversion done for you
             break;
         case 0x0203:    //NUMBER
         case 0x027E:    //RK
             content.type = PSCellContentTypeFloat;
-            content.val = [NSNumber numberWithDouble:cell->d];
+            content.value = [NSNumber numberWithDouble:cell->d];
             break;
         default:
             content.type = PSCellContentTypeUnknown;
             break;
     }
     
-    if(!content.str) {
-        content.str = [NSString stringWithCString:(char *)cell->str encoding:NSUTF8StringEncoding];
+    if(!content.text) {
+        content.text = [NSString stringWithCString:(char *)cell->str encoding:NSUTF8StringEncoding];
     }
 }
 
 // Summary Information
-- (NSString *)appName        { return _summary->appName    ? [NSString stringWithCString:(char *)_summary->appName        encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)author        { return _summary->author    ? [NSString stringWithCString:(char *)_summary->author        encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)category        { return _summary->category    ? [NSString stringWithCString:(char *)_summary->category        encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)comment        { return _summary->comment    ? [NSString stringWithCString:(char *)_summary->comment        encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)company        { return _summary->company    ? [NSString stringWithCString:(char *)_summary->company        encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)keywords        { return _summary->keywords    ? [NSString stringWithCString:(char *)_summary->keywords        encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)lastAuthor    { return _summary->lastAuthor? [NSString stringWithCString:(char *)_summary->lastAuthor    encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)manager        { return _summary->manager    ? [NSString stringWithCString:(char *)_summary->manager        encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)subject        { return _summary->subject    ? [NSString stringWithCString:(char *)_summary->subject        encoding:NSUTF8StringEncoding] : @""; }
-- (NSString *)title            { return _summary->title        ? [NSString stringWithCString:(char *)_summary->title        encoding:NSUTF8StringEncoding] : @""; }
+- (NSString *)appName {
+    return [self stringWithChar:(char *)_summary->appName];
+}
 
+- (NSString *)author {
+    return [self stringWithChar:(char *)_summary->author];
+}
+
+- (NSString *)category {
+    return [self stringWithChar:(char *)_summary->category];
+}
+
+- (NSString *)comment {
+    return [self stringWithChar:(char *)_summary->comment];
+}
+
+- (NSString *)company {
+    return [self stringWithChar:(char *)_summary->company];
+}
+
+- (NSString *)keywords {
+    return [self stringWithChar:(char *)_summary->keywords];
+}
+
+- (NSString *)lastAuthor {
+    return [self stringWithChar:(char *)_summary->lastAuthor];
+}
+
+- (NSString *)manager {
+    return [self stringWithChar:(char *)_summary->manager];
+}
+
+- (NSString *)subject {
+    return [self stringWithChar:(char *)_summary->subject];
+}
+
+- (NSString *)title {
+    return [self stringWithChar:(char *)_summary->title];
+}
+
+- (NSString *)stringWithChar:(char *)c
+{
+    if (!c)
+    {
+        return @"";
+    }
+    return [NSString stringWithCString:c encoding:NSUTF8StringEncoding];
+}
 @end

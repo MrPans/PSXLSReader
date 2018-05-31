@@ -26,7 +26,7 @@
     
     NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"test.xls"];
     
-    PSXLSReader *reader = [PSXLSReader readerWithPath:path];
+    PSXLSReader *reader = [[PSXLSReader alloc] initWithPath:path];
     
     NSString *text = @"";
     
@@ -46,8 +46,12 @@
     [reader startIteratorSheetAtIndex:0];
     
     while(YES) {
-        PSCell *cell = [reader nextCell];
-        if(cell.type == PSCellContentTypeBlank) break;
+        PSXLSCell *cell = [reader nextCell];
+        if(cell.type == PSCellContentTypeBlank)
+        {
+            break;
+            
+        }
         NSLog(@"%@", cell);
     }
 }

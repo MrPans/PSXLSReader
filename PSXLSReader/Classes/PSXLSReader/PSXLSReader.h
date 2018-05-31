@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PSCell.h"
+#import "PSXLSCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,25 +24,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *subject;
 @property (nonatomic, readonly) NSString *title;
 
-+ (instancetype)readerWithPath:(NSString *)filePath;
+- (instancetype)initWithPath:(NSString *)filePath;
 
-- (NSString *)libaryVersion;
++ (NSString *)libaryVersion;
 
 // Sheet Information
 - (NSInteger)numberOfSheets;
 - (NSString *)sheetNameAtIndex:(NSInteger)index;
-- (NSInteger)rowsForSheetAtIndex:(NSInteger)idx;
 - (BOOL)isSheetVisibleAtIndex:(NSUInteger)index;
 - (NSInteger)numberOfRowsInSheet:(NSInteger)sheetIndex;
 - (NSInteger)numberOfColsInSheet:(NSInteger)sheetIndex;
 
-// Random Access
-- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row column:(NSInteger)column;        // uses 1 based indexing!
-- (PSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row columnString:(NSString *)column;        // "A"...."Z" "AA"..."ZZ"
+// Cell Accessor
+// XLS row and column is 1 based, so use 1 based indexing here.
+- (PSXLSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row column:(NSInteger)column;
+- (PSXLSCell *)cellInWorkSheetIndex:(NSInteger)sheetNum row:(NSInteger)row columnName:(NSString *)columnName; // "A"...."Z" "AA"..."ZZ"
 
 // Iterate through all cells
 - (void)startIteratorSheetAtIndex:(NSInteger)sheetIndex;
-- (nullable PSCell *)nextCell;
+- (nullable PSXLSCell *)nextCell;
 
 @end
 
