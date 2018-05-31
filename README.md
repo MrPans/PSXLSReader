@@ -5,17 +5,15 @@
 [![License](https://img.shields.io/cocoapods/l/PSXLSReader.svg?style=flat)](https://cocoapods.org/pods/PSXLSReader)
 [![Platform](https://img.shields.io/cocoapods/p/PSXLSReader.svg?style=flat)](https://cocoapods.org/pods/PSXLSReader)
 
-## Example
+PSXLSReader is a branch of [DHlibxls](https://github.com/dhoerl/DHlibxls). DHlibxls seem to been deprecated since three years ago and no one maintained. so PSXLSReader came here.
+----
 
 ## Different with DHXLSReader
 * Swift Compatiable
 * CocoaPods supported
 * Modern Objective-C Api
-* 
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+## Example
 
 ## Installation
 
@@ -25,10 +23,6 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'PSXLSReader'
 ```
-
-## Author
-
-DeveloperPans, pansheng@youzan.com
 
 ## License
 
