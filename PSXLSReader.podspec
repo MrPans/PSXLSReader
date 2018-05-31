@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PSXLSReader'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A short description of PSXLSReader.'
 
 # This description is used to generate tags and improve search results.
@@ -26,9 +26,10 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'DeveloperPans' => 'shengpann@163.com' }
   s.source           = { :git => 'https://github.com/DeveloperPans/PSXLSReader.git', :tag => s.version.to_s }
-  
+  s.plat
 
   s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.10'
 
   s.source_files = 'PSXLSReader/Classes/**/*'
   s.public_header_files = 'PSXLSReader/Classes/PSXLSReader/*.h'
