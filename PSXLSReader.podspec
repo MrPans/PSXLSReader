@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'PSXLSReader'
   s.version          = '0.1.1'
-  s.summary          = 'A short description of PSXLSReader.'
+  s.summary          = 'a xls reader in objective-c'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,8 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+                        PSXLSReader is a branch of DHlibxls. DHlibxls seem to been deprecated since three years ago and no one maintained. 
+                        so PSXLSReader came here.
                        DESC
 
   s.homepage         = 'https://github.com/DeveloperPans/PSXLSReader'
@@ -26,11 +27,10 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'DeveloperPans' => 'shengpann@163.com' }
   s.source           = { :git => 'https://github.com/DeveloperPans/PSXLSReader.git', :tag => s.version.to_s }
-  s.plat
+  
 
   s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.10'
-
+  s.osx.deployment_target = '10.9'
   s.source_files = 'PSXLSReader/Classes/**/*'
   s.public_header_files = 'PSXLSReader/Classes/PSXLSReader/*.h'
   s.libraries = 'iconv.2', 'z'
