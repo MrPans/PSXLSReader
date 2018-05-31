@@ -6,7 +6,6 @@
 [![Platform](https://img.shields.io/cocoapods/p/PSXLSReader.svg?style=flat)](https://cocoapods.org/pods/PSXLSReader)
 
 PSXLSReader is a branch of [DHlibxls](https://github.com/dhoerl/DHlibxls). DHlibxls seem to been deprecated since three years ago and no one maintained. so PSXLSReader came here.
-----
 
 ## Different with DHXLSReader
 * Swift Compatiable
